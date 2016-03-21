@@ -3,6 +3,7 @@ import time
 import random
 
 #I chose these letters becase it was the first image I saw, and linked to stackoverflow. 
+#Removed the 'u' from 'Qu'.  It made me have issues with finding words.
 class Board:
 
 	def BoardGen():
@@ -14,7 +15,7 @@ class Board:
 		die5 = ['L','U','P','E','T','S']
 		die6 = ['A','C','I','T','O','A']
 		die7 = ['Y','L','G','K','U','E']
-		die8 = ['Qu','B','M','J','O','A']
+		die8 = ['Q','B','M','J','O','A']
 		die9 = ['E','H','I','S','P','N']
 		die10 = ['V','E','T','I','G','N']
 		die11 = ['B','A','L','I','Y','T']
