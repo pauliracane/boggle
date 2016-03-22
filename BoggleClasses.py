@@ -59,7 +59,7 @@ class Board:
 				grid +=' ' + letter.lower()
 			else:
 				grid += letter.lower()
-	
+		
 		grid = grid.split()
 		#Get Number of rows and columns (Length grid = rows, length of element 0 of grid = columns.)
 		nrows, ncols = len(grid), len(grid[0])
@@ -101,4 +101,4 @@ class Board:
 					yield (nx, ny)
 		
 		
-		return (' '.join(sorted(set(word for (word, path) in solve()))))
+		return (sorted(set(word for (word, path) in solve())))
