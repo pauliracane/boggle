@@ -60,13 +60,19 @@ def main(stdscr):
 					pass
 			elif s < 256:	#for each instance of a character being passed in.
 				guess+=str(chr(s))
-		
 
 
 	stdscr.nodelay(False)
 	stdscr.addstr(guess+"\n")
 	stdscr.addstr(' '.join(wordList))
-	stdscr.addstr("\nYou correctly guessed:\n" + ' '.join(guessedWords) +"\nfor a total of "+str(points)+" points")
-	stdscr.getkey()
+	stdscr.addstr("\nYou correctly guessed:\n" + ' '.join(guessedWords) +"\nfor a total of "+str(points)+" points\n")
+	#stdscr.addstr("\nThe computer guessed: \n" + ' '.join(CompWords) + "\nfor a total of "+str(comppoints)+" points")
+	
+	stdscr.addstr("\nFinish typing your word.\n")
+	while s != 10:
+		s = stdscr.getch()
 
+
+	stdscr.addstr("Press any Button.")
+	stdscr.getch()
 curses.wrapper(main)
