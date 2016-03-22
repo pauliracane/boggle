@@ -2,9 +2,11 @@
 
 import BoggleClasses
 
+import curses
+
 
 Board = BoggleClasses.Board.BoardGen()
-wordList = BoggleClasses.Board.ValidWords()
+wordList = BoggleClasses.Board.ValidWords(Board)
 x = 0
 for each in Board:
         x+=1
@@ -12,7 +14,8 @@ for each in Board:
                 print("\n"+each,end=' ')
         else:
                 print(each, end=' ')
-print()
+
+print("\n\n\n")
 print(wordList)
 
 

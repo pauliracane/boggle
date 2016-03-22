@@ -40,7 +40,7 @@ class Board:
 #! /usr/bin/env python3
 
 
-	def ValidWords():
+	def ValidWords(board):
 		''' 
 		
 		pulled from : 
@@ -49,10 +49,10 @@ class Board:
 		converted to Python3...
 		Is that cheating? :D
 		'''
-		board = Board.BoardGen()
 
 		x = 0
 		grid = ""
+		#Generate board in pattern: "abcd efgh ijkl mnop"
 		for letter in board:
 			x+=1
 			if x % 4 == 1:
@@ -61,17 +61,23 @@ class Board:
 				grid += letter.lower()
 	
 		grid = grid.split()
+		#Get Number of rows and columns (Length grid = rows, length of element 0 of grid = columns.)
 		nrows, ncols = len(grid), len(grid[0])
 		
 		# A dictionary word that could be a solution must use only the grid's
 		# letters and have length >= 3. (With a case-insensitive match.)
 		import re
+
+		#Make alphabet based on letters in grid.  (in comment example, a-p)
 		alphabet = ''.join(set(''.join(grid)))
+		#Set 'bogglable'  --  only matches bogglable if it's a set of 3 characters from 'Alphabet'
 		bogglable = re.compile('[' + alphabet + ']{3,}$', re.I).match
 		
+		#Walk through dictionary looking for matches on 'bogglable'
 		words = set(word.rstrip('\n') for word in open('/usr/share/dict/words') if bogglable(word.lower()))
-		prefixes = set(word[:i] for word in words for i in range(2, len(word)+1))
 		
+		prefixes = set(word[:i] for word in words for i in range(2, len(word)+1))
+	
 		def solve():
 			for y, row in enumerate(grid):
 				for x, letter in enumerate(row):
@@ -95,4 +101,4 @@ class Board:
 					yield (nx, ny)
 		
 		
-		return (sorted(set(word for (word, path) in solve())))
+		return (' '.join(sorted(set(word for (word, path) in solve()))))
