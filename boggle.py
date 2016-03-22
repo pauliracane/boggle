@@ -54,7 +54,10 @@ def main(stdscr):
 				else:
 					guess = ""			
 			elif s == 263:	#catch backspace character, remove last character passed in
-				guess = guess.replace(guess[-1],"")
+				if guess:
+					guess = guess.replace(guess[-1],"")
+				else:
+					pass
 			elif s < 256:	#for each instance of a character being passed in.
 				guess+=str(chr(s))
 		
