@@ -4,6 +4,7 @@ import BoggleClasses
 
 
 Board = BoggleClasses.Board.BoardGen()
+wordList = BoggleClasses.Board.ValidWords()
 x = 0
 for each in Board:
         x+=1
@@ -12,5 +13,6 @@ for each in Board:
         else:
                 print(each, end=' ')
 print()
+print(wordList)
 
 
