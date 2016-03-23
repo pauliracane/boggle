@@ -21,7 +21,7 @@ def main(stdscr):
 		else:
 			stdscr.addstr(each + "  ")
 	stdscr.addstr("\n\n\n")
-	endTime = time.time()+30
+	endTime = time.time()+180 # make game 3 minutes long (180 seconds)
 	guess = ""
 	guessedWords = []
 	CompWords = []
@@ -36,7 +36,7 @@ def main(stdscr):
 		if s != -1:
 			chr(s)
 			if s == 10: # 10 is the carrage return sent by enter.
-				for x in range(0,len(guess)):		#Wipe the line
+				for x in range(0,len(guess) + 20):	#Wipe the line in event of longest word (16 + a bit.)
 					stdscr.addstr(" ")
 				stdscr.move(7,0)			#move back to the start of the line
 				if guess in wordList:			#check if the guess is in the list of valid words
@@ -62,16 +62,17 @@ def main(stdscr):
 				else:
 					pass
 			elif s < 256:	#for each instance of a character being passed in.
-				guess+=str(chr(s))
+				guess+=str(chr(s)).lower()
 		if time.time() > compguess:
 			compguess = time.time() + 7
 			computerGuess = random.choice(list(wordList))
 			wordList.remove(computerGuess)
 			CompWords.append(computerGuess)
+			stdscr.addstr(y, 0, ' '*42)
 			stdscr.addstr(y, 0, 'Computer has guessed: ')
 			stdscr.addstr(computerGuess)
 			stdscr.move(7,len(guess))
-			wordlen = len(guess)	#Get the length once, so it's less comparisons
+			wordlen = len(computerGuess)	#Get the length once, so it's less comparisons
 			if wordlen <= 4:	#If word is 3 or 4 letters
 				comppoints += 1	#give 1 point
 			elif wordlen == 5:	#if 5 letters
