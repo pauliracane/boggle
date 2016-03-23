@@ -3,7 +3,7 @@
 import BoggleClasses
 import time
 import curses
-
+import random
 
 def main(stdscr):
 	Board = BoggleClasses.Board.BoardGen()
@@ -24,9 +24,12 @@ def main(stdscr):
 	endTime = time.time()+30
 	guess = ""
 	guessedWords = []
+	CompWords = []
 	points = 0
+	comppoints = 0
 	curses.echo()
-	
+	y = 9
+	compguess = time.time() + 7
 	while time.time() < endTime and wordList:
 		stdscr.nodelay(True)
 		s = stdscr.getch()
@@ -60,13 +63,33 @@ def main(stdscr):
 					pass
 			elif s < 256:	#for each instance of a character being passed in.
 				guess+=str(chr(s))
+		if time.time() > compguess:
+			compguess = time.time() + 7
+			computerGuess = random.choice(list(wordList))
+			wordList.remove(computerGuess)
+			CompWords.append(computerGuess)
+			stdscr.addstr(y, 0, 'Computer has guessed: ')
+			stdscr.addstr(computerGuess)
+			stdscr.move(7,len(guess))
+			wordlen = len(guess)	#Get the length once, so it's less comparisons
+			if wordlen <= 4:	#If word is 3 or 4 letters
+				comppoints += 1	#give 1 point
+			elif wordlen == 5:	#if 5 letters
+				comppoints += 2	#give 2 points
+			elif wordlen == 6:	#if 6 letters
+				comppoints +=3 	#give 3 points
+			elif wordlen == 7:	#if 7 letters
+				comppoints +=5 	#give 5 poitns
+			else:			#if more than 7
+				comppoints +=11	#give 11 points
 
+			computerGuess = ""
 
 	stdscr.nodelay(False)
 	stdscr.addstr(guess+"\n")
 	stdscr.addstr(' '.join(wordList))
 	stdscr.addstr("\nYou correctly guessed:\n" + ' '.join(guessedWords) +"\nfor a total of "+str(points)+" points\n")
-	#stdscr.addstr("\nThe computer guessed: \n" + ' '.join(CompWords) + "\nfor a total of "+str(comppoints)+" points")
+	stdscr.addstr("\nThe computer guessed: \n" + ' '.join(CompWords) + "\nfor a total of "+str(comppoints)+" points")
 	
 	stdscr.addstr("\nFinish typing your word.\n")
 	while s != 10:
