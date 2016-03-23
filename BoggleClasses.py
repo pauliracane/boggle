@@ -3,7 +3,9 @@ import time
 import random
 
 #I chose these letters becase it was the first image I saw, and linked to stackoverflow. 
-#Removed the 'u' from 'Qu'.  It made me have issues with finding words.
+#Further reading :
+#( http://www.boardgamegeek.com/thread/300565/review-boggle-veteran-and-beware-different-version )
+#states c1976, yellow box.
 class Board:
 
 	def BoardGen():
@@ -67,7 +69,6 @@ class Board:
 		# A dictionary word that could be a solution must use only the grid's
 		# letters and have length >= 3. (With a case-insensitive match.)
 		import re
-
 		#Make alphabet based on letters in grid.  (in comment example, a-p)
 		alphabet = ''.join(set(''.join(grid)))
 		#Set 'bogglable'  --  only matches bogglable if it's a set of 3 characters from 'Alphabet'

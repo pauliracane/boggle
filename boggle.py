@@ -17,9 +17,9 @@ def main(stdscr):
 	for each in Board:
 		x+=1
 		if x % 4 == 1:
-			stdscr.addstr("\n"+each+ " ")
+			stdscr.addstr("\n"+each+ "  ")
 		else:
-			stdscr.addstr(each + " ")
+			stdscr.addstr(each + "  ")
 	stdscr.addstr("\n\n\n")
 	endTime = time.time()+30
 	guess = ""
