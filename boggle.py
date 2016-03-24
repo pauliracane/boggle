@@ -28,16 +28,16 @@ def main(stdscr):
 	points = 0
 	comppoints = 0
 	curses.echo()
-	y = 9
+	y = 9	#computer Y input Line
+	hY = 7	#Humans Y input line
 	compguess = time.time() + 7
 	while time.time() < endTime and wordList:
 		stdscr.nodelay(True)
 		s = stdscr.getch()
 		if s != -1:
-			chr(s)
-			if s == 10: # 10 is the carrage return sent by enter.
+			if chr(s) == '\n': # 10 is the carrage return sent by enter.
 				for x in range(0,len(guess) + 20):	#Wipe the line in event of longest word (16 + a bit.)
-					stdscr.addstr(" ")
+					stdscr.addstr(hY,x," ")
 				stdscr.move(7,0)			#move back to the start of the line
 				if guess in wordList:			#check if the guess is in the list of valid words
 					wordList.remove(guess)		#Remove it from the list
@@ -56,12 +56,12 @@ def main(stdscr):
 					guess = ""			#reset guess to be null
 				else:
 					guess = ""			
-			elif s == 263:	#catch backspace character, remove last character passed in
+			elif s == curses.KEY_BACKSPACE:	#catch backspace character, remove last character passed in
 				if guess:
-					guess = guess.replace(guess[-1],"")
-					stdscr.addstr(7,0," " * int(len(guess) + 80) )
-					stdscr.addstr(7,0,guess)
-					stdscr.move(7,len(guess))
+					guess = guess[:-1]
+					stdscr.addstr(hY,0," " * int(len(guess) + 80) )
+					stdscr.addstr(hY,0,guess)
+					stdscr.move(hY,len(guess))
 				else:
 					pass
 			elif s < 256:	#for each instance of a character being passed in.
