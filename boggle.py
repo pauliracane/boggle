@@ -54,6 +54,8 @@ def main(stdscr):
 						points +=11		#give 11 points
 					guessedWords.append(guess)	#add the guess to a list of human guessed words
 					guess = ""			#reset guess to be null
+				elif guess == 'q':
+					endTime = time.time()
 				else:
 					guess = ""			
 			elif s == curses.KEY_BACKSPACE:	#catch backspace character, remove last character passed in
