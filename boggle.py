@@ -59,7 +59,8 @@ def main(stdscr):
 			elif s == 263:	#catch backspace character, remove last character passed in
 				if guess:
 					guess = guess.replace(guess[-1],"")
-					stdscr.addstr(" ")
+					stdscr.addstr(7,0," " * int(len(guess) + 80) )
+					stdscr.addstr(7,0,guess)
 					stdscr.move(7,len(guess))
 				else:
 					pass
