@@ -75,7 +75,7 @@ class Board:
 		bogglable = re.compile('[' + alphabet + ']{3,}$', re.I).match
 		
 		#Walk through dictionary looking for matches on 'bogglable'
-		words = set(word.rstrip('\n') for word in open('/usr/share/dict/words') if bogglable(word.lower()))
+		words = set(word.rstrip('\n') for word in open('/usr/share/dict/american-english') if bogglable(word.lower()))
 		
 		prefixes = set(word[:i] for word in words for i in range(2, len(word)+1))
 	
