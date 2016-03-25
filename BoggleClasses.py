@@ -2,10 +2,12 @@
 import time
 import random
 
-#I chose these letters becase it was the first image on google images
-#Further reading :
-#( http://www.boardgamegeek.com/thread/300565/review-boggle-veteran-and-beware-different-version )
-#states c1976, yellow box.
+# I chose these letters becase it was the first image on google images
+# Further reading :
+# http://www.boardgamegeek.com/thread/300565/
+# states c1976, yellow box.
+
+
 class Board:
 
     def BoardGen():
@@ -26,9 +28,9 @@ class Board:
         die14 = ['U', 'W', 'I', 'L', 'R', 'G']
         die15 = ['P', 'A', 'C', 'E', 'M', 'D']
 
-        BoardToEndAllBoards = [die0, die1, die2, die3, die4, die5,
-                die6, die7, die8, die9, die10,
-                die11, die12, die13, die14, die15
+        BoardToEndAllBoards = [die0, die1, die2, die3, die4, die5, 
+                    die6, die7, die8, die9, die10, die11, die12, 
+                    die13, die14, die15
                 ]
 
         Board = []
@@ -41,17 +43,15 @@ class Board:
         return Board
 
     def ValidWords(board):
-        ''' 
-
-        pulled from : 
+        '''
+        pulled from :
         http://stackoverflow.com/questions/746082/how-to-find-list-of-possible-words-from-a-letter-matrix-boggle-solver#750012
-
         converted to Python3...
         '''
 
         x = 0
         grid = ""
-        #Generate board in pattern: "abcd efgh ijkl mnop"
+        # Generate board in pattern: "abcd efgh ijkl mnop"
         for letter in board:
             x += 1
             if x % 4 == 1:
@@ -60,21 +60,21 @@ class Board:
                 grid += letter.lower()
 
         grid = grid.split()
-        #Number of rows, columns
+        # Number of rows, columns
         nrows, ncols = len(grid), len(grid[0])
 
         # A dictionary word that could be a solution must use only the grid's
         # letters and have length >= 3. (With a case-insensitive match.)
         import re
-        #Make alphabet based on letters in grid.  (in comment example, a-p)
+        # Make alphabet based on letters in grid.  (in comment example, a-p)
         alphabet = ''.join(set(''.join(grid)))
-        #Set bogglable matches bogglable if a set of 3 characters from Alphabet
+        # Set bogglable matches bogglable if a set of 3 characters from Alphabet
         bogglable = re.compile('[' + alphabet + ']{3,}$', re.I).match
 
-        #Walk through dictionary looking for matches on 'bogglable'
+        # Walk through dictionary looking for matches on 'bogglable'
         words = set(word.rstrip('\n') for word in
-                open('/usr/share/dict/american-english')
-                if bogglable(word.lower()))
+                    open('/usr/share/dict/american-english')
+                    if bogglable(word.lower()))
         prefixes=set(word[:i] for word in words 
                 for i in range(2, len(word) + 1))
 
@@ -100,5 +100,5 @@ class Board:
                 for ny in range(max(0, y - 1), min(y + 2, nrows)):
                     yield (nx, ny)
 
-
         return (sorted(set(word for (word, path) in solve())))
+
