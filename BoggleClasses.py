@@ -5,6 +5,7 @@ import random
 # I chose these letters becase it was the first image on google images
 # Further reading :
 # http://www.boardgamegeek.com/thread/300565/
+# This program is for educational purposes.
 # states c1976, yellow box.
 
 
