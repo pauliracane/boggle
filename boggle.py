@@ -24,50 +24,50 @@ def main(stdscr):
         else:
             stdscr.addstr(each + "  ")
     stdscr.addstr("\n\n\n")
-    endTime = time.time() + 10 # make game 3 minutes long (180 seconds)
+    endTime = time.time() + 10  # make game 3 minutes long (180 seconds)
     guess = ""
     guessedWords = []
     CompWords = []
     points = 0
     comppoints = 0
     curses.echo()
-    y = 9    #computer Y input Line
-    hY = 7    #Humans Y input line
+    y = 9   # computer Y input Line
+    hY = 7  # Humans Y input line
     compguess = time.time() + 7
     while time.time() < endTime and wordList:
         stdscr.nodelay(True)
         s = stdscr.getch()
         if s != -1:
-            if chr(s) == '\n': # 10 is the carrage return sent by enter.
-                for x in range(0,len(guess) + 20):    #Wipe line of long word
+            if chr(s) == '\n':  # 10 is the carrage return sent by enter.
+                for x in range(0, len(guess) + 20):  # Wipe line of long word
                     stdscr.addstr(hY, x, " ")
-                stdscr.move(7, 0)           #move back to the start of the line
-                if guess in wordList:       #if guess in list of words
-                    wordList.remove(guess)  #Remove it from the list
-                    wordlen = len(guess)    #Get length once, less checks
-                    if wordlen <= 4:        #If word is 3 or 4 letters
-                        points += 1         #give 1 point
-                    elif wordlen == 5:      #if 5 letters
-                        points += 2         #give 2 points
-                    elif wordlen == 6:      #if 6 letters
-                        points +=3          #give 3 points
-                    elif wordlen == 7:      #if 7 letters
-                        points +=5          #give 5 poitns
-                    else:                   #if more than 7
-                        points += 11        #give 11 points
-                    guessedWords.append(guess)    #add guess to used words
-                    guess = ""              #reset guess to be null
+                stdscr.move(7, 0)           # move back to start of the line
+                if guess in wordList:       # if guess in list of words
+                    wordList.remove(guess)  # Remove it from the list
+                    wordlen = len(guess)    # Get length once, less checks
+                    if wordlen <= 4:        # If word is 3 or 4 letters
+                        points += 1         # give 1 point
+                    elif wordlen == 5:      # if 5 letters
+                        points += 2         # give 2 points
+                    elif wordlen == 6:      # if 6 letters
+                        points += 3         # give 3 points
+                    elif wordlen == 7:      # if 7 letters
+                        points += 5         # give 5 poitns
+                    else:                   # if more than 7
+                        points += 11        # give 11 points
+                    guessedWords.append(guess)    # add guess to used words
+                    guess = ""              # reset guess to be null
                 elif guess == 'q':
                     endTime = time.time()
                 else:
-                    guess = ""            
-            elif s == curses.KEY_BACKSPACE: #catch backspace wipe last char
+                    guess = ""
+            elif s == curses.KEY_BACKSPACE: # catch backspace wipe last char
                 if guess:
                     guess = guess[:-1]
-                    stdscr.addstr(hY, 0, " " * int(len(guess) + 80) )
+                    stdscr.addstr(hY, 0, " " * int(len(guess) + 80))
                     stdscr.addstr(hY, 0, guess)
                     stdscr.move(hY, len(guess))
-            elif s < 256:    #for each instance of character being passed in.
+            elif s < 256:    # for each instance of character being passed in.
                 guess += str(chr(s)).lower()
 
         if time.time() > compguess:
@@ -75,22 +75,22 @@ def main(stdscr):
             computerGuess = random.choice(list(wordList))
             wordList.remove(computerGuess)
             CompWords.append(computerGuess)
-            stdscr.addstr(y, 0, ' '*42)
+            stdscr.addstr(y, 0, ' ' * 42)
             stdscr.addstr(y, 0, 'Computer has guessed: ')
             stdscr.addstr(computerGuess)
-            stdscr.move(7,len(guess))
-            wordlen = len(computerGuess)#Get length, less comparisons
-            if wordlen <= 4:            #If word is 3 or 4 letters
-                comppoints += 1         #give 1 point
-            elif wordlen == 5:          #if 5 letters
-                comppoints += 2         #give 2 points
-            elif wordlen == 6:          #if 6 letters
-                comppoints += 3         #give 3 points
-            elif wordlen == 7:          #if 7 letters
-                comppoints += 5         #give 5 poitns
-            else:                       #if more than 7
-                comppoints += 11        #give 11 points
-                    
+            stdscr.move(7, len(guess))
+            wordlen = len(computerGuess)  # Get length, less comparisons
+            if wordlen <= 4:              # If word is 3 or 4 letters
+                comppoints += 1           # give 1 point
+            elif wordlen == 5:            # if 5 letters
+                comppoints += 2           # give 2 points
+            elif wordlen == 6:            # if 6 letters
+                comppoints += 3           # give 3 points
+            elif wordlen == 7:            # if 7 letters
+                comppoints += 5           # give 5 poitns
+            else:                         # if more than 7
+                comppoints += 11          # give 11 points
+
             computerGuess = ""
 
     stdscr.nodelay(False)
@@ -110,3 +110,4 @@ def main(stdscr):
 
 if __name__ == '__main__':
     curses.wrapper(main)
+
