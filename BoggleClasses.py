@@ -30,7 +30,7 @@ class Board:
 
         BoardToEndAllBoards = [
                                 die0, die1, die2, die3, die4, die5,
-                                die6, die7, die8, die9, die10, 
+                                die6, die7, die8, die9, die10,
                                 die11, die12, die13, die14, die15
                               ]
 
@@ -76,7 +76,7 @@ class Board:
         words = set(word.rstrip('\n') for word in
                     open('/usr/share/dict/american-english')
                     if bogglable(word.lower()))
-        prefixes=set(word[:i] for word in words
+        prefixes = set(word[:i] for word in words
                      for i in range(2, len(word) + 1))
 
         def solve():
