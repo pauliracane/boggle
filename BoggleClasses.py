@@ -77,7 +77,7 @@ class Board:
                     open('/usr/share/dict/american-english')
                     if bogglable(word.lower()))
         prefixes = set(word[:i] for word in words
-                     for i in range(2, len(word) + 1))
+                        for i in range(2, len(word) + 1))
 
         def solve():
             for y, row in enumerate(grid):
