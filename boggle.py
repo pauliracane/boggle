@@ -59,17 +59,14 @@ def main(stdscr):
                     endTime = time.time()
                 else:
                     guess = ""            
-            elif s == curses.KEY_BACKSPACE:    #catch backspace, wipe last character
+            elif s == curses.KEY_BACKSPACE: #catch backspace wipe last char
                 if guess:
                     guess = guess[:-1]
                     stdscr.addstr(hY,0," " * int(len(guess) + 80) )
                     stdscr.addstr(hY,0,guess)
                     stdscr.move(hY,len(guess))
-                else:
-                    pass
-            elif s < 256:    #for each instance of a character being passed in.
+            elif s < 256:    #for each instance of character being passed in.
                 guess+=str(chr(s)).lower()
-
 
         if time.time() > compguess:
             compguess = time.time() + 7
@@ -80,17 +77,17 @@ def main(stdscr):
             stdscr.addstr(y, 0, 'Computer has guessed: ')
             stdscr.addstr(computerGuess)
             stdscr.move(7,len(guess))
-            wordlen = len(computerGuess)    #Get length, less comparisons
-            if wordlen <= 4:        #If word is 3 or 4 letters
-                comppoints += 1     #give 1 point
-            elif wordlen == 5:      #if 5 letters
-                comppoints += 2     #give 2 points
-            elif wordlen == 6:      #if 6 letters
-                comppoints +=3      #give 3 points
-            elif wordlen == 7:      #if 7 letters
-                comppoints +=5      #give 5 poitns
-            else:                   #if more than 7
-                comppoints +=11     #give 11 points
+            wordlen = len(computerGuess)#Get length, less comparisons
+            if wordlen <= 4:            #If word is 3 or 4 letters
+                comppoints += 1         #give 1 point
+            elif wordlen == 5:          #if 5 letters
+                comppoints += 2         #give 2 points
+            elif wordlen == 6:          #if 6 letters
+                comppoints += 3         #give 3 points
+            elif wordlen == 7:          #if 7 letters
+                comppoints += 5         #give 5 poitns
+            else:                       #if more than 7
+                comppoints += 11        #give 11 points
                     
             computerGuess = ""
 
@@ -105,7 +102,6 @@ def main(stdscr):
     stdscr.addstr("\nFinish typing your word.\n")
     while s != 10:
         s = stdscr.getch()
-
 
     stdscr.addstr("Press any Button.")
     stdscr.getch()
