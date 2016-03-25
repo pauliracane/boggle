@@ -61,7 +61,7 @@ def main(stdscr):
                     endTime = time.time()
                 else:
                     guess = ""
-            elif s == curses.KEY_BACKSPACE: # catch backspace wipe last char
+            elif s == curses.KEY_BACKSPACE:  # catch backspace wipe last char
                 if guess:
                     guess = guess[:-1]
                     stdscr.addstr(hY, 0, " " * int(len(guess) + 80))
