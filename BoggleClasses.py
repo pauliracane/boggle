@@ -2,7 +2,7 @@
 import time
 import random
 
-#I chose these letters becase it was the first image I saw, and linked to stackoverflow. 
+#I chose these letters becase it was the first image on google images
 #Further reading :
 #( http://www.boardgamegeek.com/thread/300565/review-boggle-veteran-and-beware-different-version )
 #states c1976, yellow box.
@@ -39,8 +39,6 @@ class Board:
 		
 		return Board
 #	self.endTime = time.time()+180 # 3 minute counter
-#! /usr/bin/env python3
-
 
 	def ValidWords(board):
 		''' 
@@ -63,7 +61,7 @@ class Board:
 				grid += letter.lower()
 		
 		grid = grid.split()
-		#Get Number of rows and columns (Length grid = rows, length of element 0 of grid = columns.)
+		#Number of rows, columns
 		nrows, ncols = len(grid), len(grid[0])
 		
 		# A dictionary word that could be a solution must use only the grid's
@@ -71,13 +69,15 @@ class Board:
 		import re
 		#Make alphabet based on letters in grid.  (in comment example, a-p)
 		alphabet = ''.join(set(''.join(grid)))
-		#Set 'bogglable'  --  only matches bogglable if it's a set of 3 characters from 'Alphabet'
+		#Set bogglable matches bogglable if a set of 3 characters from Alphabet
 		bogglable = re.compile('[' + alphabet + ']{3,}$', re.I).match
 		
 		#Walk through dictionary looking for matches on 'bogglable'
-		words = set(word.rstrip('\n') for word in open('/usr/share/dict/american-english') if bogglable(word.lower()))
+		words = set(word.rstrip('\n') for word in \
+			open('/usr/share/dict/american-english') \
+			if bogglable(word.lower()))
 		
-		prefixes = set(word[:i] for word in words for i in range(2, len(word)+1))
+		prefixes=set(word[:i] for word in words for i in range(2,len(word)+1))
 	
 		def solve():
 			for y, row in enumerate(grid):
