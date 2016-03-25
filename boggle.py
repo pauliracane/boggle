@@ -24,7 +24,7 @@ def main(stdscr):
         else:
             stdscr.addstr(each + "  ")
     stdscr.addstr("\n\n\n")
-    endTime = time.time() + 10  # make game 3 minutes long (180 seconds)
+    endTime = time.time() + 180  # make game 3 minutes long (180 seconds)
     guess = ""
     guessedWords = []
     CompWords = []
