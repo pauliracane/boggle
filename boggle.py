@@ -31,8 +31,8 @@ def main(stdscr):
     points = 0
     comppoints = 0
     curses.echo()
-    y = 9   # computer Y input Line
-    hY = 7  # Humans Y input line
+    y = 15   # computer Y input Line
+    hY = 12  # Humans Y input line
     compguess = time.time() + 7
     while time.time() < endTime and wordList:
         stdscr.nodelay(True)
