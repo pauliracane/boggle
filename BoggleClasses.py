@@ -9,26 +9,27 @@ import random
 class Board:
 
     def BoardGen():
-        die0 = [ 'R','I','F','O','B','X']
-        die1 = ['I','F','E','H','E','Y']
-        die2 = ['D','E','N','O','W','S']
-        die3 = ['U','T','O','K','N','D']
-        die4 = ['H','M','S','R','A','O']
-        die5 = ['L','U','P','E','T','S']
-        die6 = ['A','C','I','T','O','A']
-        die7 = ['Y','L','G','K','U','E']
-        die8 = ['Q','B','M','J','O','A']
-        die9 = ['E','H','I','S','P','N']
-        die10 = ['V','E','T','I','G','N']
-        die11 = ['B','A','L','I','Y','T']
-        die12 = ['E','Z','A','V','N','D']
-        die13 = ['R','A','L','E','S','C']
-        die14 = ['U','W','I','L','R','G']
-        die15 = ['P','A','C','E','M','D']
+        die0 = ['R', 'I', 'F', 'O', 'B', 'X']
+        die1 = ['I', 'F', 'E', 'H', 'E', 'Y']
+        die2 = ['D', 'E', 'N', 'O', 'W', 'S']
+        die3 = ['U', 'T', 'O', 'K', 'N', 'D']
+        die4 = ['H', 'M', 'S', 'R', 'A', 'O']
+        die5 = ['L', 'U', 'P', 'E', 'T', 'S']
+        die6 = ['A', 'C', 'I', 'T', 'O', 'A']
+        die7 = ['Y', 'L', 'G', 'K', 'U', 'E']
+        die8 = ['Q', 'B', 'M', 'J', 'O', 'A']
+        die9 = ['E', 'H', 'I', 'S', 'P', 'N']
+        die10 = ['V', 'E', 'T', 'I', 'G', 'N']
+        die11 = ['B', 'A', 'L', 'I', 'Y', 'T']
+        die12 = ['E', 'Z', 'A', 'V', 'N', 'D']
+        die13 = ['R', 'A', 'L', 'E', 'S', 'C']
+        die14 = ['U', 'W', 'I', 'L', 'R', 'G']
+        die15 = ['P', 'A', 'C', 'E', 'M', 'D']
 
-        BoardToEndAllBoards = [die0,die1,die2,die3,die4,die5,
-                die6,die7,die8,die9,die10,
-                die11,die12,die13,die14,die15]
+        BoardToEndAllBoards = [die0, die1, die2, die3, die4, die5,
+                die6, die7, die8, die9, die10,
+                die11, die12, die13, die14, die15
+                ]
 
         Board = []
 
@@ -52,9 +53,9 @@ class Board:
         grid = ""
         #Generate board in pattern: "abcd efgh ijkl mnop"
         for letter in board:
-            x+=1
+            x += 1
             if x % 4 == 1:
-                grid +=' ' + letter.lower()
+                grid += ' ' + letter.lower()
             else:
                 grid += letter.lower()
 
@@ -71,10 +72,11 @@ class Board:
         bogglable = re.compile('[' + alphabet + ']{3,}$', re.I).match
 
         #Walk through dictionary looking for matches on 'bogglable'
-        words = set(word.rstrip('\n') for word in \
-                open('/usr/share/dict/american-english') \
+        words = set(word.rstrip('\n') for word in
+                open('/usr/share/dict/american-english')
                 if bogglable(word.lower()))
-        prefixes=set(word[:i] for word in words for i in range(2,len(word)+1))
+        prefixes=set(word[:i] for word in words 
+                for i in range(2, len(word) + 1))
 
         def solve():
             for y, row in enumerate(grid):
@@ -94,8 +96,8 @@ class Board:
 
         def neighbors(coords):
             (x, y) = coords
-            for nx in range(max(0, x-1), min(x+2, ncols)):
-                for ny in range(max(0, y-1), min(y+2, nrows)):
+            for nx in range(max(0, x - 1), min(x + 2, ncols)):
+                for ny in range(max(0, y - 1), min(y + 2, nrows)):
                     yield (nx, ny)
 
 
