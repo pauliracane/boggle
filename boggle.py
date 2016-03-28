@@ -4,7 +4,7 @@ import BoggleClasses
 import time
 import curses
 import random
-
+from test import box
 
 def main(stdscr):
     Board = BoggleClasses.Board.BoardGen()
@@ -17,12 +17,17 @@ def main(stdscr):
     win = curses.newwin(height, width, begin_y, begin_x)
 
     x = 0
+    z = 0
+    y = 2
     for each in Board:
         x += 1
         if x % 4 == 1:
-            stdscr.addstr("\n" + each + "  ")
+            y += 2
+            z = 0
+            box(z, y, each)
         else:
-            stdscr.addstr(each + "  ")
+            z += 4
+            box(z, y, each)
     stdscr.addstr("\n\n\n")
     endTime = time.time() + 180  # make game 3 minutes long (180 seconds)
     guess = ""
@@ -31,14 +36,14 @@ def main(stdscr):
     points = 0
     comppoints = 0
     curses.echo()
-    y = 15   # computer Y input Line
-    hY = 12  # Humans Y input line
+    y = 16   # computer Y input Line
+    hY = 13  # Humans Y input line
     compguess = time.time() + 7
     while time.time() < endTime and wordList:
         stdscr.nodelay(True)
         stdscr.addstr(0,0,"           ") # Wipe remaining time, then Print
         stdscr.addstr(0,0,(str(int(endTime - time.time()))+" seconds"))
-            stdscr.move(hY,len(guess))       # Move to Human Input Y
+        stdscr.move(hY,len(guess))       # Move to Human Input Y
         s = stdscr.getch()
         if s != -1:
             if chr(s) == '\n':  # 10 is the carrage return sent by enter.
