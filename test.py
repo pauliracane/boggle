@@ -3,8 +3,8 @@
 import curses
 
 
-def box(begin_x, begin_y, letter):
-    TL_win = curses.newwin(3, 5, begin_y, begin_x)
+def box(screen, begin_x, begin_y, letter):
+    TL_win = screen.subwin(3, 5, begin_y, begin_x)
     
     TL_win.addstr(1,2,letter)
 
@@ -33,5 +33,5 @@ def main(stdscr):
     stdscr.addstr("Hit enter when Ready.")   
     stdscr.getkey()
     stdscr.addstr(0,0,"                            ")
-#if __name__ == '__main__':
-curses.wrapper(main)
+if __name__ == '__main__':
+    curses.wrapper(main)

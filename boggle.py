@@ -24,10 +24,10 @@ def main(stdscr):
         if x % 4 == 1:
             y += 2
             z = 0
-            box(z, y, each)
+            box(stdscr, z, y, each)
         else:
             z += 4
-            box(z, y, each)
+            box(stdscr, z, y, each)
     stdscr.addstr("\n\n\n")
     endTime = time.time() + 180  # make game 3 minutes long (180 seconds)
     guess = ""
