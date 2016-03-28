@@ -36,12 +36,15 @@ def main(stdscr):
     compguess = time.time() + 7
     while time.time() < endTime and wordList:
         stdscr.nodelay(True)
+        stdscr.addstr(0,0,"           ") # Wipe remaining time, then Print
+        stdscr.addstr(0,0,(str(int(endTime - time.time()))+" seconds"))
+            stdscr.move(hY,len(guess))       # Move to Human Input Y
         s = stdscr.getch()
         if s != -1:
             if chr(s) == '\n':  # 10 is the carrage return sent by enter.
                 for x in range(0, len(guess) + 20):  # Wipe line of long word
                     stdscr.addstr(hY, x, " ")
-                stdscr.move(7, 0)           # move back to start of the line
+                stdscr.move(hY, 0)          # move back to start of the line
                 if guess in wordList:       # if guess in list of words
                     wordList.remove(guess)  # Remove it from the list
                     wordlen = len(guess)    # Get length once, less checks
@@ -78,7 +81,7 @@ def main(stdscr):
             stdscr.addstr(y, 0, ' ' * 42)
             stdscr.addstr(y, 0, 'Computer has guessed: ')
             stdscr.addstr(computerGuess)
-            stdscr.move(7, len(guess))
+            stdscr.move(hY, len(guess))
             wordlen = len(computerGuess)  # Get length, less comparisons
             if wordlen <= 4:              # If word is 3 or 4 letters
                 comppoints += 1           # give 1 point
