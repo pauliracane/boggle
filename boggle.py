@@ -41,7 +41,7 @@ def main(stdscr):
     compguess = time.time() + 7
     while time.time() < endTime and wordList:
         stdscr.nodelay(True)
-        stdscr.addstr(0,0,"           ") # Wipe remaining time, then Print
+        stdscr.addstr(0,0," "*20) # Wipe remaining time, then Print
         stdscr.addstr(0,0,(str(int(endTime - time.time()))+" seconds"))
         stdscr.move(hY,len(guess))       # Move to Human Input Y
         s = stdscr.getch()
@@ -49,6 +49,7 @@ def main(stdscr):
             if chr(s) == '\n':  # 10 is the carrage return sent by enter.
                 for x in range(0, len(guess) + 20):  # Wipe line of long word
                     stdscr.addstr(hY, x, " ")
+                    stdscr.addstr(hY+1, x, " ")
                 stdscr.move(hY, 0)          # move back to start of the line
                 if guess in wordList:       # if guess in list of words
                     wordList.remove(guess)  # Remove it from the list
