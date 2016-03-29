@@ -71,12 +71,16 @@ def main(stdscr):
                     guess = ""
             elif s == curses.KEY_BACKSPACE:  # catch backspace wipe last char
                 if guess:
+                    stdscr.addstr(hY, 0, " " * len(guess))
                     guess = guess[:-1]
-                    stdscr.addstr(hY, 0, " " * int(len(guess) + 80))
+
                     stdscr.addstr(hY, 0, guess)
                     stdscr.move(hY, len(guess))
             elif s < 256:    # for each instance of character being passed in.
-                guess += str(chr(s)).lower()
+                if len(guess) < 17:
+                    guess += str(chr(s)).lower()
+                else:
+                    stdscr.addstr(hY+1, 0, "Guess is too long.")
 
         if time.time() > compguess:
             compguess = time.time() + 7
