@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 import BoggleClasses
+import warnings
 import time
 import curses
 import random
@@ -123,8 +124,10 @@ def main(stdscr):
     stdscr.getch()
 
 if __name__ == '__main__':
+    warnings.simplefilter('always',DeprecationWarning)
     if sys.version_info[0] < 3:
-        print("Error; program must be run in Python v3.")
-        exit(91)
+        warnings.warn("This program only works in python3", DeprecationWarning)
+        exit(2)
+#        print("Error; program must be run in Python v3.")
     curses.wrapper(main)
 
