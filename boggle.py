@@ -134,5 +134,7 @@ if __name__ == '__main__':
             print("DeprecationWarning: This program only works in Python3")
             exit(15)
 #        print("Error; program must be run in Python v3.")
-    curses.wrapper(main)
-
+    try:
+        curses.wrapper(main)
+    except:
+        exit(5)
