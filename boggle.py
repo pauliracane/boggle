@@ -20,7 +20,7 @@ def main(stdscr):
 
     x = 0
     z = 0
-    y = 2
+    y = 0
     for each in Board:
         x += 1
         if x % 4 == 1:
@@ -30,7 +30,6 @@ def main(stdscr):
         else:
             z += 4
             box(stdscr, z, y, each)
-    stdscr.addstr("\n\n\n")
     endTime = time.time() + 180  # make game 3 minutes long (180 seconds)
     guess = ""
     guessedWords = []
@@ -110,7 +109,6 @@ def main(stdscr):
 
     stdscr.nodelay(False)
     stdscr.addstr(guess + "\n")
-    stdscr.addstr(' '.join(wordList))
     stdscr.addstr("\nYou correctly guessed:\n" + ' '.join(guessedWords))
     stdscr.addstr("\nfor a total of "+str(points) + " points\n")
     stdscr.addstr("\nThe computer guessed: \n" + ' '.join(CompWords))
@@ -120,14 +118,18 @@ def main(stdscr):
     while s != 10:
         s = stdscr.getch()
 
+    stdscr.addstr("\nValid words were those guessed above and\n")
+    stdscr.addstr(' '.join(wordList))
     stdscr.addstr("Press any Button.")
     stdscr.getch()
+
+
 
 if __name__ == '__main__':
     warnings.simplefilter('always',DeprecationWarning)
     if sys.version_info[0] < 3:
-        warnings.warn("This program only works in python3", DeprecationWarning)
-        exit(2)
+        raise DeprecationWarning("This program only works in python3")
+        exit(15)
 #        print("Error; program must be run in Python v3.")
     curses.wrapper(main)
 
