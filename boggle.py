@@ -120,16 +120,19 @@ def main(stdscr):
         s = stdscr.getch()
 
     stdscr.addstr(' '.join(wordList))
-    stdscr.addstr("\nPress any Button.")
+    stdscr.addstr("\n\nPress any Button.")
     stdscr.getch()
 
 
 
 if __name__ == '__main__':
-    warnings.simplefilter('always',DeprecationWarning)
+    warnings.simplefilter('error')
     if sys.version_info[0] < 3:
-        raise DeprecationWarning("This program only works in python3")
-        exit(15)
+        try:
+            raise DeprecationWarning("This program only works in python3")
+        except DeprecationWarning:
+            print("DeprecationWarning: This program only works in Python3")
+            exit(15)
 #        print("Error; program must be run in Python v3.")
     curses.wrapper(main)
 
