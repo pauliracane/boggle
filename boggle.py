@@ -107,20 +107,20 @@ def main(stdscr):
 
             computerGuess = ""
 
+    stdscr.clear()
+    stdscr.move(0,0)
     stdscr.nodelay(False)
-    stdscr.addstr(guess + "\n")
     stdscr.addstr("\nYou correctly guessed:\n" + ' '.join(guessedWords))
     stdscr.addstr("\nfor a total of "+str(points) + " points\n")
     stdscr.addstr("\nThe computer guessed: \n" + ' '.join(CompWords))
     stdscr.addstr("\nfor a total of "+str(comppoints)+" points")
 
-    stdscr.addstr("\nFinish typing your word.\n")
+    stdscr.addstr("\nFinish typing your word.\n\n")
     while s != 10:
         s = stdscr.getch()
 
-    stdscr.addstr("\nValid words were those guessed above and\n")
     stdscr.addstr(' '.join(wordList))
-    stdscr.addstr("Press any Button.")
+    stdscr.addstr("\nPress any Button.")
     stdscr.getch()
 
 
