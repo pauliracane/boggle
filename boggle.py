@@ -4,6 +4,7 @@ import BoggleClasses
 import time
 import curses
 import random
+import sys
 from test import box
 
 def main(stdscr):
@@ -122,5 +123,8 @@ def main(stdscr):
     stdscr.getch()
 
 if __name__ == '__main__':
+    if sys.version_info[0] < 3:
+        print("Error; program must be run in Python v3.")
+        exit(91)
     curses.wrapper(main)
 
