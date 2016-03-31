@@ -10,8 +10,10 @@ import random
 
 
 class Board:
-
+    '''Defines Board Class, which has two functions; BoardGen, and ValidWords.'''
+    #This probably shouldn't be a class.
     def BoardGen():
+        '''Make the board.  Returns a list of 16 characters'''
         die0 = ['R', 'I', 'F', 'O', 'B', 'X']
         die1 = ['I', 'F', 'E', 'H', 'E', 'Y']
         die2 = ['D', 'E', 'N', 'O', 'W', 'S']
@@ -45,6 +47,10 @@ class Board:
         return Board
 
     def ValidWords(board):
+        '''
+        Finds all the words which can be made from the list passed into it,
+        checking only on adjacent characters to make the words
+        '''
         '''
         pulled from :
         http://stackoverflow.com/questions/746082/how-to-find-list-of-possible-words-from-a-letter-matrix-boggle-solver#750012
