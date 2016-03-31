@@ -145,4 +145,6 @@ if __name__ == '__main__':
     try:
         curses.wrapper(main)
     except:
+        print("Something went wrong.")
+        print("Try increasing the size of your terminal.\n")
         exit(5)
