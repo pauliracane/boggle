@@ -110,7 +110,7 @@ def main(stdscr):
 
     # Prevent accidental exits if they're still typing when game ends
     stdscr.addstr("\nPress Enter to continue.\n\n")
-    while chr(s) != '\n':
+    while chr(abs(s)) != '\n':  # Chr poops the bed when given a -1.
         s = stdscr.getch()
     stdscr.addstr("\nThe unguessed words were:\n")
     stdscr.addstr(' '.join(wordList))
@@ -146,7 +146,9 @@ if __name__ == '__main__':
         curses.wrapper(main)
     except KeyboardInterrupt:
         print("Try just sending in 'q' next time.")
+    '''
     except:
         print("Something went wrong.")
         print("Try increasing the size of your terminal.\n")
         exit(5)
+    '''
