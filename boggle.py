@@ -146,9 +146,7 @@ if __name__ == '__main__':
         curses.wrapper(main)
     except KeyboardInterrupt:
         print("Try just sending in 'q' next time.")
-    '''
     except:
         print("Something went wrong.")
         print("Try increasing the size of your terminal.\n")
         exit(5)
-    '''
