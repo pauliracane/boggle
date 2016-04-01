@@ -6,7 +6,7 @@ import random
 # Further reading :
 # http://www.boardgamegeek.com/thread/300565/
 # This program is for educational purposes.
-# states c1976, yellow box.
+# states c1976, yellow box sold in UK
 
 
 class Board:
